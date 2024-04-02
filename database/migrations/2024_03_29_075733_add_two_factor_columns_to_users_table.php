@@ -12,6 +12,8 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // REVIEW: missing
+        // Cột thừa?
         Schema::table('users', function (Blueprint $table) {
             $table->text('two_factor_secret')
                 ->after('password')
@@ -20,7 +22,8 @@ return new class extends Migration
             $table->text('two_factor_recovery_codes')
                 ->after('two_factor_secret')
                 ->nullable();
-
+            // REVIEW: missing
+            // Chưa cài fortify?
             if (Fortify::confirmsTwoFactorAuthentication()) {
                 $table->timestamp('two_factor_confirmed_at')
                     ->after('two_factor_recovery_codes')

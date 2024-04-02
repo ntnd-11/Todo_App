@@ -6,6 +6,8 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 
+// REVIEW: missing
+// Không sử dụng?
 class UserController extends Controller
 {
 

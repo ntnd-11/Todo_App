@@ -1,3 +1,5 @@
+{{--REVIEW: refctor--}}
+{{--Cân nhắc sử dụng component layout để kế thừa lại giao diện--}}
 <!DOCTYPE html>
         <html lang="en">
             <head>
