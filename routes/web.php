@@ -4,12 +4,16 @@ use App\Http\Controllers\TaskController;
 use App\Models\Task;
 use Illuminate\Support\Facades\Route;
 
+// REVIEW: refactor
+// Sao không đưa vào controller?
 Route::get('/', function(){
     $tasks = Task::orderBy('id','asc')
     ->paginate((2));
     return view('taskList', compact('tasks'));
 });
 
+// REVIEW: refactor
+// Cân nhắc dùng Route::resource
 Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
 Route::post('/tasks/store', [TaskController::class, 'store'])->name('tasks.store');
 Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit');

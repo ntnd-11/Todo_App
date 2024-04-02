@@ -5,6 +5,8 @@ namespace App\Http\Middleware;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
+// REVIEW: missing
+// Không dùng inertia thì thêm vào middleware để làm gì?
 class HandleInertiaRequests extends Middleware
 {
     /**

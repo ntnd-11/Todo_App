@@ -7,6 +7,8 @@ use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
 class TaskController extends Controller
 {
+    // REVIEW: missing
+    // Không dùng?
     /**
      * Display a listing of the resource.
      */
@@ -32,7 +34,11 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
+        // REVIEW: missing
+        // Bên giao diện không có chỗ hiển thị lỗi validate?
         $validated = $request->validate([
+            // REVIEW: security
+            // Xem tại https://github.com/NMHiepasd/Hiep-TodoApp/pull/1/files#diff-fb950efa26828f1cd0cf1b5b373c2a14a99a8e6cb78d2a6ec599115893bbcf59R25
             'name'=> 'required',
             'deadline'=> 'required',
             'status'=> 'required',
@@ -71,6 +77,8 @@ class TaskController extends Controller
     public function update(UpdateTaskRequest $request, $id)
     {
         $task = Task::findOrFail($id);
+        // REVIEW: missing
+        // Bên giao diện không có chỗ hiển thị lỗi validate?
         $validated = $request->validate([
             'name'=> 'required',
             'deadline'=> 'required',
@@ -91,6 +99,8 @@ class TaskController extends Controller
 
     public function restore($id)
     {
+        // REVIEW: missing
+        // Bên giao diện không có chỗ hiển thị flash message?
         $task = Task::withTrashed()->findOrFail($id)->restore();
         return redirect('/tasks/rb')->with('success','Task restored successfully');
     }
@@ -98,6 +108,8 @@ class TaskController extends Controller
 
     public function delete($id)
     {
+        // REVIEW: missing
+        // Bên giao diện không có chỗ hiển thị flash message?
         $task = Task::findOrFail($id)->delete();
         return redirect('/')->with('success','Task deleted successfully');
     }
@@ -106,6 +118,8 @@ class TaskController extends Controller
 
     public function destroy($id)
     {
+        // REVIEW: missing
+        // Bên giao diện không có chỗ hiển thị flash message?
         $task = Task::withTrashed()->findOrFail($id)->forceDelete();
         return redirect('/tasks/rb')->with('success','Task destroyed successfully');
     }
@@ -113,6 +127,8 @@ class TaskController extends Controller
 
     public function search(SearchTaskRequest $request){
 
+        // REVIEW: refactor
+        // Giao diện, chức năng giống trang index?
         $name = $request->name;
         $status = $request->status;
         $deadline = $request->deadline;

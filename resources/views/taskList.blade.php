@@ -448,6 +448,8 @@
                             </div>
                         </th>
                     </table>
+                    {{--REVIEW: refactor--}}
+                    {{--Sao có form tại đây mà k phải link?--}}
                     <form action="{{route('register')}}">
                         <button>Register</button>
                     </form>
@@ -480,11 +482,15 @@
                                         <div>{{ $task->status }}</div>
                                     </td>
                                     <td>
+                                        {{--REVIEW: refactor--}}
+                                        {{--Sao không dùng link?--}}
                                         <form action="{{route('tasks.edit', $task->id)}}">
                                             <button class="float-left submit-button" >Edit</button>
                                         </form>
                                     </td>
                                     <td>
+                                        {{--REVIEW: refactor--}}
+                                        {{--Sao không dùng link?--}}
                                         <form action="{{route('tasks.delete', $task->id)}}">
                                             <button class="float-right submit-button" >Delete</button>
                                         </form>
@@ -494,6 +500,8 @@
                         </tbody>
                     </table>
 
+                    {{--REVIEW: refactor--}}
+                    {{--Sao lại dùng onEachSide?trong khi limit là 2--}}
                     {{$tasks->onEachSide(1)->links()}}
 
                 </div>

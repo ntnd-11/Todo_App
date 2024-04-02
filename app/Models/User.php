@@ -47,6 +47,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $appends = [
+        // REVIEW: missing
+        // Không có attribute này
         'profile_photo_url',
     ];
 

@@ -10,6 +10,8 @@ class Task extends Model
 {
     use SoftDeletes;
     use HasFactory;
+    // REVIEW: missing
+    // Không cần thiết vì đây là giá trị mặc định
     protected $primaryKey = 'id';
 
     public $fillable = [
@@ -17,5 +19,7 @@ class Task extends Model
         'deadline',
         'status',
     ];
+    // REVIEW: missing
+    // Không cần thiết vì đây là giá trị mặc định
     protected $table = 'tasks';
 }
