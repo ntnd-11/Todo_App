@@ -66,7 +66,7 @@
                         </tbody>
                     </table>
 
-                    {{$tasks->onEachSide(1)->links()}}
+                    {{$tasks->links()}}
 
                 </div>
             </div>

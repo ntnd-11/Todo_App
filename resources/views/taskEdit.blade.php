@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
         <html lang="en">
             <head>
                 <title>Edit Tasks</title>
@@ -10,8 +10,8 @@
                 </div>
             <div class="panel-body">
                 <form action="{{route('tasks.update', $task->id)}}" method="POST" class="col-sm-offset-3 col-sm-6">
-                    {{ csrf_field() }}
-                    {{@method_field('PUT')}}
+                    {{csrf_field()}}
+                    @method_field('PUT')
                     <div class="form-group">
                         <label for="task" class="col-sm-3 control-label">Name</label>
                         <div class="col-sm-6">
@@ -50,4 +50,64 @@
                 </form>
             </div>
             </body>
-        </html>
+        </html> --}}
+
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Update Task') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <h1 class="mb-0">Update Task</h1>
+                    <hr />
+                    @if (session()->has('error'))
+                    <div>
+                        {{session('error')}}
+                    </div>
+                    @endif
+                    <p><a href="/admin/tasks" class="btn btn-primary">Back</a></p>
+
+                    <form action="{{ route('tasks.update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="row mb-3">
+                            <div class="col">
+                                <input type="text" name="name" class="form-control" value="{{$task->name}}">
+                                @error('name')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <input type="datetime-local" name="deadline" class="form-control" value="{{$task->deadline}}">
+                                @error('deadline')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="cars">Status</label>
+                            <select name="status" id="status">
+                                <option value="Todo">Todo</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Done">Done</option>
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="d-grid">
+                                <button class="btn btn-primary">Add</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>

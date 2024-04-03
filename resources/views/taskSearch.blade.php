@@ -94,7 +94,7 @@
                         </tbody>
                     </table>
 
-                    {{$tasks->appends(request()->all())->onEachSide(1)->links()}}
+                    {{$tasks->appends(request()->all())->links()}}
 
                 </div>
             </div>

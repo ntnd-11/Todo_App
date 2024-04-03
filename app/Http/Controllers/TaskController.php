@@ -12,8 +12,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        // $task = DB::table('tasks')->simplePaginate(2);
-        // return view('taskList', ['tasks'=> $task]);
+        $tasks = Task::orderBy("id","asc")->paginate(2);
+        return view('taskList', compact('tasks'));
     }
 
     /**
