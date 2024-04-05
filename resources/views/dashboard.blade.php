@@ -11,6 +11,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
                 </div>
+                <p><a href="/user/tasks" class="btn btn-primary">User Tasks</a></p>
             </div>
         </div>
     </div>

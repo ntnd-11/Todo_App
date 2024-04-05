@@ -217,7 +217,11 @@
 
             @if (Route::has('login') && Auth::check())
                 <div class="top-right links">
-                    <a href="{{ url('/dashboard') }}">Dashboard</a>
+                    @if (Auth::user()->role == 'admin')
+                        <a href="{{ url('admin/dashboard') }}">Dashboard</a>
+                    @else
+                        <a href="{{ url('/dashboard') }}">Dashboard</a>
+                    @endif
                 </div>
             @elseif (Route::has('login') && !Auth::check())
                 <div class="top-right links">

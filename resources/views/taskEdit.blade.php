@@ -72,7 +72,7 @@
                     @endif
                     <p><a href="/admin/tasks" class="btn btn-primary">Back</a></p>
 
-                    <form action="{{ route('tasks.update') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('tasks.update', ['task'  =>$task->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row mb-3">
@@ -93,16 +93,16 @@
                         </div>
                         <div class="row mb-3">
                             <label for="cars">Status</label>
-                            <select name="status" id="status">
-                                <option value="Todo">Todo</option>
-                                <option value="In Progress">In Progress</option>
-                                <option value="Done">Done</option>
+                            <select class="form-control" id="type" name="status">
+                                <option value="Todo" {{ $task->status == 'Todo' ? 'selected' : '' }}>Todo</option>
+                                <option value="In Progress" {{ $task->status == 'In Progress' ? 'selected' : '' }}>In Progress</option>
+                                <option value="Done" {{ $task->status == 'Done' ? 'selected' : '' }}>Done</option>
                             </select>
                         </div>
 
                         <div class="row">
                             <div class="d-grid">
-                                <button class="btn btn-primary">Add</button>
+                                <button class="btn btn-primary">Save</button>
                             </div>
                         </div>
                     </form>

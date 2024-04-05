@@ -27,24 +27,29 @@ Route::get('admin/dashboard', function(){
 ->name('admin.dashboard');
 
 
-Route::get('tasks', function(){
+Route::get('admin/tasks', function(){
     $tasks = Task::orderBy('id','asc')
     ->paginate(2);
     return view('taskList', compact('tasks'));
 })->name('tasks.list');
 
+Route::get('admin/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
+Route::post('admin/tasks', [TaskController::class, 'store'])->name('tasks.store');
+Route::get('admin/tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
+Route::put('admin/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
+Route::get('admin/tasks/{task}', [TaskController::class,'delete'])->name('tasks.delete');
+Route::get('admin/tasks/{task}/restore', [TaskController::class,'restore'])->name('tasks.restore');
+Route::get('admin/tasks/{task}/destroy', [TaskController::class,'destroy'])->name('tasks.destroy');
 
-
-Route::resource('tasks',TaskController::class);
-Route::get('tasks/rb', function(){
+Route::get('admin/tasks/recycle/bin', function(){
     $tasks = Task::onlyTrashed()
     ->orderBy('id','asc')
     ->paginate(2);
     return view('taskRB', compact('tasks'));
-})->name('tasks.rb');
+})->name('tasks.bin');
 
 
-Route::get('tasks/search', [TaskController::class, 'search'])->name('tasks.search');
+Route::get('admin/tasks/search/tasks', [TaskController::class, 'search'])->name('tasks.search');
 
-Route::resource('admin/tasks', TaskController::class);
-Route::delete('admin/tasks/{task}', [TaskController::class,'delete'])->name('tasks.delete');
+Route::get('user/tasks', [TaskController::class, 'show']);
+
